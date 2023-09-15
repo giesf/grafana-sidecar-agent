@@ -1,0 +1,19 @@
+metrics:
+  global:
+    scrape_interval: 60s
+    remote_write:
+      - url: ${REMOTE_WRITE_URL}
+        basic_auth:
+          username: ${REMOTE_WRITE_USERNAME}
+          password: ${REMOTE_WRITE_PASSWORD}
+
+  configs:
+    - name: metrics
+      scrape_configs:
+        - job_name: scraping
+          static_configs:
+            - targets: ['${SCRAPE_TARGET}'] 
+integrations:
+  agent:
+    enabled: true
+
